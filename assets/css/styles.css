@@ -1,0 +1,150 @@
+/* == FONT FAMILY == */
+/* Let's use a font that is nice and consistent (and god forbid, not Montserrat)
+    display=swap allows Google to tell the browser to use the fallback font first to avoid render-blocking, then show Google fonts once loaded*/
+/* @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"); */
+@import url("https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600;700&family=Inter:wght@400;600;700&display=swap");
+
+/* == VARIABLE CSS == */
+/* Let's now declare some variables that we can use for later CSS (note all css variables have a -- prefix)*/
+
+/* this is the root selector (a pseudo-class) and it basically just selected the highest-level parent of a file i.e. the root element (HTML root is always html tag) 
+It also wins on the specificity argument because it is a pseudoclass so it has a higher score */
+
+:root { 
+    /* remember, units and their values must not have a space inbetween them!
+    set the header height to be 3.5rem i.e. 3.5 times the root reference element as defined on the screen */
+    --header-height: 3.5rem;
+    
+    /* == Fonts == */
+    /* This is known as a system font stack */
+    --body-font: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+    "Segoe UI Symbol";
+
+    --title-color: hsl(0, 0%, 100%);
+    --text-color: hsl(0, 0%, 60%);
+    --body-color: hsl(0, 0%, 0%);
+
+      /*========== Font weight ==========*/
+    --font-regular: 400;
+    --font-medium: 600;
+    --font-semi-bold: 700;
+    
+      /*========== z index ==========*/
+    --z-tooltip: 10;
+    --z-fixed: 100;
+
+}
+
+/*=============== BASE ===============*/
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+  }
+
+body {
+    font-family: var(--body-font);
+    background-color: var(--body-color);
+    color: var(--text-color);
+}
+
+ul {
+    list-style: none;
+  }
+  
+  a {
+    text-decoration: none;
+    font-weight: var(--font-medium)
+  }
+
+/* === REUSABLE CSS CLASSES */
+
+.container {
+    max-width: 1024px;
+    margin-right: 1.5rem;
+    margin-left: 1.5rem;
+  }
+
+.grid {
+    display: grid;
+    gap: 1.5rem;
+  }
+
+.section {
+    padding: 4.5rem 0 2rem;
+}
+
+.main {
+    overflow: hidden;
+}
+
+/* === HEADER & NAV === */
+
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: transparent;
+    z-index: var(--z-fixed);
+    border-bottom: 1px solid var(--text-color);
+}
+
+.nav {
+    height: var(--header-height);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#logo {
+    max-height: 2.5rem;
+    width: auto;
+}
+
+.home__intro {
+    row-gap: 2rem;
+}
+
+.home__title {
+    margin-block-end: 0.5em;
+}
+
+.home__description {
+    margin-block-end: 0.75em;
+}
+
+.home__names p {
+    margin-top: 0.5rem;
+}
+
+@media screen and (min-width: 1023px) {
+    .home__container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .home__names p {
+        margin-top: 0rem;
+    }
+
+    h3 {
+        margin-block-end: 1rem;
+    }
+
+    .home__names {
+        text-align: right;
+    }
+}
+
+@media screen and (min-width: 1152px) {
+    .container {
+      margin-inline: auto;
+    }
+
+    .home__container {
+        height: initial;
+        justify-content: space-between;
+        padding-block: 1.5rem 4rem;
+      }
+}
